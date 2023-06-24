@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-export function useFetch(endpoint: string, email: string): (boolean | string | null )[] {
+export function useFetch<T>(endpoint: string, email: string, initialState = [] as T): [boolean, T]{
   const [loading, setLoading] = useState(true);
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState<T>(initialState);
 
   useEffect(() => {
     (async () => {
