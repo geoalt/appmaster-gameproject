@@ -1,17 +1,9 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import { AppContext } from "../context/AppProvider";
-import { IDataItem } from "../interfaces/IDataItem";
+import { useEffect, useState } from "react";
 
-export function useFetch(endpoint: string, email: string): [boolean, IDataItem[], IDataItem[]]{
+export function useFetch<T>(endpoint: string, email: string, initialState = [] as T): [boolean, T]{
 
   const [loading, setLoading] = useState(true);
-  const { data, setData, response, setResponse } = useContext(AppContext);
-
-  const updateData = useCallback((json: IDataItem[]) => {
-    setResponse(json);
-    setData(json);
-}, [setData, setResponse]);
-
+  const [response, setResponse] = useState<T>(initialState);
 
   useEffect(() => {
     (async () => {
@@ -24,11 +16,11 @@ export function useFetch(endpoint: string, email: string): [boolean, IDataItem[]
         const json = await resp.json();
         
         setLoading(false);
-        updateData(json)
+        setResponse(json)
       }
       
       )();
-    }, [endpoint, email, updateData]);
+    }, [endpoint, email]);
     
-    return [loading, response, data]
+    return [loading, response]
 }
