@@ -49,7 +49,7 @@ export function Home() {
           <section>
             <div>
               {data?.map((item) => (
-                <Link to={`games/${item.id}`} key={crypto.randomUUID()}>
+                <Link to={item.game_url} key={crypto.randomUUID()}>
                   <GameItem game={item} />
                 </Link>
               ))}
