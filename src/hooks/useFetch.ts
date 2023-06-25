@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { AppContext } from "../context/AppProvider";
+import { IDataItem } from "../interfaces/IDataItem";
 
-export function useFetch<T>(endpoint: string, email: string, initialState = [] as T): [boolean, T]{
+export function useFetch(endpoint: string, email: string): [boolean, IDataItem[], IDataItem[]]{
+
   const [loading, setLoading] = useState(true);
-  const [response, setResponse] = useState<T>(initialState);
+  const { data, setData, response, setResponse } = useContext(AppContext);
+
+  const updateData = useCallback((json: IDataItem[]) => {
+    setResponse(json);
+    setData(json);
+}, [setData, setResponse]);
+
 
   useEffect(() => {
     (async () => {
-
         const resp = await fetch(endpoint, {
           headers: {
             'Content-Type': 'application/json',
@@ -16,11 +24,11 @@ export function useFetch<T>(endpoint: string, email: string, initialState = [] a
         const json = await resp.json();
         
         setLoading(false);
-        setResponse(json)
-    }
+        updateData(json)
+      }
       
-    )();
-  }, [endpoint, email]);
-
-  return [loading, response]
+      )();
+    }, [endpoint, email, updateData]);
+    
+    return [loading, response, data]
 }
