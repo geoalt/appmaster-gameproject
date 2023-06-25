@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useFetch } from '../hooks/useFetch';
-import { IDataItem } from '../interfaces/IDataItem';
 import { GameItem } from '../components/GameItem';
 
 export function Home() {
   const endpoint = 'https://games-test-api-81e9fb0d564a.herokuapp.com/api/data';
   const email = 'meu@email.com.br';
 
-  const [loading, response] = useFetch<IDataItem[]>(endpoint, email);
+  const [loading, response, data] = useFetch(endpoint, email);
+
   const [searchContent, setSearchContent] = useState('');
 
   if (loading) {
@@ -46,7 +46,7 @@ export function Home() {
 
           <section>
             <div>
-              {response.map((item) => (
+              {data.map((item) => (
                 <GameItem game={item} key={crypto.randomUUID()} />
               ))}
             </div>
