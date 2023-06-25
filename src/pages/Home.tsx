@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import { useFetch } from '../hooks/useFetch';
 import { GameItem } from '../components/GameItem';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IDataItem } from '../interfaces/IDataItem';
 
 export function Home() {
   const endpoint = 'https://games-test-api-81e9fb0d564a.herokuapp.com/api/data';
   const email = 'meu@email.com.br';
 
-  const [loading, data] = useFetch<IDataItem[]>(endpoint, email);
+  const [loading, data, error] = useFetch<IDataItem[]>(endpoint, email);
   const [searchContent, setSearchContent] = useState('');
   const navigate = useNavigate();
+
+  if (error) {
+    return error;
+  }
 
   if (loading) {
     return 'Loading...';
@@ -44,8 +48,10 @@ export function Home() {
 
           <section>
             <div>
-              {data.map((item) => (
-                <GameItem game={item} key={crypto.randomUUID()} />
+              {data?.map((item) => (
+                <Link to={`games/${item.id}`} key={crypto.randomUUID()}>
+                  <GameItem game={item} />
+                </Link>
               ))}
             </div>
           </section>

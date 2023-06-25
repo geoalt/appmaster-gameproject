@@ -7,8 +7,12 @@ export function GameList() {
   const endpoint = 'https://games-test-api-81e9fb0d564a.herokuapp.com/api/data';
   const email = 'meu@email.com.br';
 
-  const [loading, data] = useFetch<IDataItem[]>(endpoint, email);
+  const [loading, data, error] = useFetch<IDataItem[]>(endpoint, email);
   const { str } = useParams();
+
+  if (error) {
+    return error;
+  }
 
   if (loading) {
     return 'Loading...';
