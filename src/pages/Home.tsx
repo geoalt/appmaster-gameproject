@@ -43,14 +43,15 @@ export function Home() {
                   id="inputSearch"
                   value={searchContent}
                   onChange={(e) => handleChange(e)}
-                  placeholder="Ready... ?!"
+                  placeholder="Enter a title to search"
                 />
-                <input type="button" value="Go!" onClick={handleClick} />
+                <input type="button" value="Search" onClick={handleClick} />
               </div>
             </div>
           </section>
 
           <section className={styles.gamelist__container}>
+            <h2>Check out this awesome games!</h2>
             <div className={styles.gamelist}>
               {data?.map((item) => (
                 <Link to={item.game_url} key={crypto.randomUUID()}>
