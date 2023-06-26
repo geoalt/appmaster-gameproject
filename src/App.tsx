@@ -6,8 +6,6 @@ import { NotFound } from './pages/NotFound';
 export function App() {
   return (
     <div>
-      <header>Header</header>
-
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="games">
@@ -15,8 +13,6 @@ export function App() {
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-
-      <footer>Footer</footer>
     </div>
   );
 }

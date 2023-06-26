@@ -1,17 +1,26 @@
 import { IGameProp } from '../interfaces/IGameProp';
+import style from './_gameitem.module.scss';
 
 export function GameItem(props: IGameProp) {
   const { game } = props;
 
   return (
-    <div>
-      <img src={game.thumbnail} alt={game.title} />
+    <div className={style.card}>
       <div>
-        <div>{game.title}</div>
-        <div>{game.short_description}</div>
-        <div>{game.genre}</div>
+        <img src={game.thumbnail} alt={game.title} className={style.card__img} />
       </div>
-      <div>{game.platform}</div>
+      <div className={style.card__content}>
+        <div className={style.content__title}>
+          <p>{game.title}</p>
+        </div>
+        {/* <div className={style.card__description}>{game.short_description}</div> */}
+        <div className={style.content__platforms}>
+          <p>{game.platform}</p>
+        </div>
+        <div className={style.content__genre}>
+          <p>{game.genre}</p>
+        </div>
+      </div>
     </div>
   );
 }

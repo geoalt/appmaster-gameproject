@@ -3,6 +3,7 @@ import { useFetch } from '../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 import { IDataItem } from '../interfaces/IDataItem';
 import { useState } from 'react';
+import styles from './_gamelist.module.scss';
 
 export function GameList() {
   const endpoint = 'https://games-test-api-81e9fb0d564a.herokuapp.com/api/data';
@@ -66,8 +67,8 @@ export function GameList() {
             </div>
           </section>
 
-          <section>
-            <div>
+          <section className={styles.gamelist__container}>
+            <div className={styles.gamelist}>
               {filteredGames
                 .filter(({ genre }) => genre.includes(filterByGenre))
                 .map((item) => (

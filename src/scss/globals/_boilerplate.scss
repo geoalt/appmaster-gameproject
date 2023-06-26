@@ -1,0 +1,26 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  background-color: var(--gray-100);
+  color: var(--gray-600);
+  font-weight: 400;
+
+  -webkit-font-smoothing: antialiased;
+}
