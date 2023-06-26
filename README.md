@@ -3,11 +3,12 @@
 # Free Games to Play
 
 Project development based on a free API for games.
+
 **[Live Preview](https://appmaster-gameproject.vercel.app/)**
 
-- [Image]()
-- [Image]()
-- [Image]()
+### Screenshots
+
+[Image](https://github.com/geoalt/appmaster-gameproject/blob/main/public/home-a.png) / [Image](https://github.com/geoalt/appmaster-gameproject/blob/main/public/home-b.png) / [Image](https://github.com/geoalt/appmaster-gameproject/blob/main/public/searchresult.png)
 
 ## Getting Started
 
