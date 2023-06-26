@@ -6,14 +6,12 @@ export function GameItem(props: IGameProp) {
 
   return (
     <div className={style.card}>
-      <div>
-        <img src={game.thumbnail} alt={game.title} className={style.card__img} />
-      </div>
+      <img src={game.thumbnail} alt={game.title} className={style.card__img} />
       <div className={style.card__content}>
         <div className={style.content__title}>
           <p>{game.title}</p>
         </div>
-        {/* <div className={style.card__description}>{game.short_description}</div> */}
+        <div className={style.content__description}>{game.short_description}</div>
         <div className={style.content__platforms}>
           <p>{game.platform}</p>
         </div>
