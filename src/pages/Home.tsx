@@ -32,7 +32,7 @@ export function Home() {
   return (
     <>
       <div>
-        <main>
+        <main className={styles.home__container}>
           <section>
             <div className={styles.hero}>
               <h1>Find your new free to play game!</h1>
