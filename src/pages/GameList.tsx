@@ -42,12 +42,12 @@ export function GameList() {
   return (
     <>
       <div>
-        <main>
+        <main className={styles.main}>
           <section>
-            <div>
-              <p>
-                Showing results for: <span>{str}</span>
-              </p>
+            <h1 className={styles.searchtext}>
+              Showing results for: <span>{str}</span>
+            </h1>
+            <div className={styles.genre__container}>
               <label htmlFor="selectGenre">
                 Filter by genre
                 <select
