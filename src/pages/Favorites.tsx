@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useFetch } from '../hooks/useFetch'
 import { GameItem } from '../components/GameItem'
 import { useNavigate } from 'react-router-dom'
-import styles from './_home.module.scss'
+import styles from './_favorites.module.scss'
 import { Loading } from '../components/Loading'
 import { Header } from '../components/Header'
 import { useAppContext } from '../hooks/useAppContext'
@@ -10,14 +10,22 @@ import { useAppContext } from '../hooks/useAppContext'
 import { getUserData } from '../services/database'
 import { IUserData } from '../interfaces/IUserData'
 
-export function Home() {
+export function Favorites() {
   const endpoint = 'https://games-test-api-81e9fb0d564a.herokuapp.com/api/data'
   const email = 'meu@email.com.br'
 
   const [loading, data, error] = useFetch(endpoint, email)
+  const [filterByGenre, setFilterByGenre] = useState('')
+
   const [searchContent, setSearchContent] = useState('')
 
-  const { setUserData } = useAppContext()
+  const { setUserData, userData } = useAppContext()
+
+  const myFavorites = userData?.favoritedGames?.map((game) => game.gameId)
+
+  const showFavorites = data?.filter((game) =>
+    myFavorites?.find((it) => it === game.id),
+  )
 
   const navigate = useNavigate()
 
@@ -72,6 +80,16 @@ export function Home() {
     navigate(`/games/search/${searchContent}`)
   }
 
+  const genres = Array.from(new Set(showFavorites.map((item) => item.genre)))
+
+  function handleChangeGenre(e: { target: HTMLSelectElement }): void {
+    if (e.target.value === 'All') {
+      setFilterByGenre('')
+    } else {
+      setFilterByGenre(e.target.value)
+    }
+  }
+
   return (
     <>
       <div>
@@ -79,7 +97,7 @@ export function Home() {
           <section>
             <div className={styles.hero}>
               <header className={styles.header}>{<Header />}</header>
-              <h1>Discover new awesome free games</h1>
+              <h1>My Favorites Game List</h1>
               <div className={styles.searchContainer}>
                 <input
                   type="text"
@@ -100,9 +118,8 @@ export function Home() {
           </section>
 
           <section className={styles.gamelist__container}>
-            <h2>Check out this awesome games!</h2>
             <div className={styles.gamelist}>
-              {data?.map((item) => (
+              {showFavorites.map((item) => (
                 <GameItem key={crypto.randomUUID()} game={item} />
               ))}
             </div>

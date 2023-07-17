@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useAppContext } from "./useAppContext";
+import { IDataItem } from "../interfaces/IDataItem";
 
-export function useFetch<T>(endpoint: string, email: string, initialState = [] as T): [boolean, T, null | string]{
+export function useFetch(endpoint: string, email: string): [boolean, IDataItem[], null | string]{
 
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<T>(initialState);
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
+
+  const {setData, data} = useAppContext();
 
   useEffect(() => {
     (async () => {
@@ -43,7 +46,7 @@ export function useFetch<T>(endpoint: string, email: string, initialState = [] a
 
       })();
       
-  }, [endpoint, email]);
+  }, [endpoint, email, setData]);
   
     return [loading, data, error]
 }

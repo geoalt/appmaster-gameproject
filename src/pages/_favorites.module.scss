@@ -4,12 +4,13 @@
 }
 
 .hero {
-  height: 100vh;
   display: flex;
   flex-direction: column;
 
   align-items: center;
   justify-content: center;
+
+  margin-top: 50px;
 }
 
 h1 {
@@ -26,6 +27,8 @@ h1 {
   margin-top: 2rem;
   width: calc(100% - 2.5rem);
   max-width: 50rem;
+
+  margin-bottom: 30px;
 
   @media only screen and (min-width: 768px) {
     flex-direction: row;
@@ -66,8 +69,6 @@ input[type='button'] {
 .gamelist__container {
   margin-inline: auto;
   width: calc(100% - 2.5rem);
-
-  margin-top: -40px;
 }
 
 .gamelist {
@@ -81,5 +82,29 @@ input[type='button'] {
     display: grid;
     grid-gap: 25px;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+.genre__container {
+  font-weight: 900;
+  & > label {
+    display: block;
+    margin-left: auto;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    font-size: 1rem;
+  }
+
+  & select {
+    height: 35px;
+    width: 200px;
+    padding-inline: 10px;
+    border-radius: 6px;
+    font-size: 1rem;
+
+    margin-top: 8px;
   }
 }

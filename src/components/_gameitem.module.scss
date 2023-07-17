@@ -209,6 +209,17 @@ input:checked ~ label {
   color: #fd4;
 }
 input#rate-5:checked ~ label {
-  color: #fe7;
+  color: #fd4;
   text-shadow: 0 0 20px #952;
+}
+
+.notRated {
+  float: right;
+  font-size: 20px;
+  color: #444;
+  padding-inline: 2px;
+
+  span {
+    color: #fd4;
+  }
 }
