@@ -15,7 +15,6 @@ export function Favorites() {
   const email = 'meu@email.com.br'
 
   const [loading, data, error] = useFetch(endpoint, email)
-  const [filterByGenre, setFilterByGenre] = useState('')
 
   const [searchContent, setSearchContent] = useState('')
 
@@ -78,16 +77,6 @@ export function Favorites() {
 
   function handleClick(): void {
     navigate(`/games/search/${searchContent}`)
-  }
-
-  const genres = Array.from(new Set(showFavorites.map((item) => item.genre)))
-
-  function handleChangeGenre(e: { target: HTMLSelectElement }): void {
-    if (e.target.value === 'All') {
-      setFilterByGenre('')
-    } else {
-      setFilterByGenre(e.target.value)
-    }
   }
 
   return (

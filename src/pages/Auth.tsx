@@ -6,7 +6,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithPopup,
   signInWithEmailAndPassword,
-  signOut,
 } from 'firebase/auth'
 
 import styles from './_auth.module.scss'
@@ -18,7 +17,7 @@ export function Auth() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+  const [isPasswordVisible] = useState(false)
   const [isSignInVisible, setIsSignInVisible] = useState(true)
 
   const navigate = useNavigate()
@@ -72,14 +71,14 @@ export function Auth() {
     }
   }
 
-  async function logout(e: FormEvent) {
-    e.preventDefault()
-    try {
-      await signOut(auth)
-    } catch (error) {
-      if (error instanceof Error) console.error(error.message)
-    }
-  }
+  // async function logout(e: FormEvent) {
+  //   e.preventDefault()
+  //   try {
+  //     await signOut(auth)
+  //   } catch (error) {
+  //     if (error instanceof Error) console.error(error.message)
+  //   }
+  // }
 
   return (
     <div className={styles.authContainer}>

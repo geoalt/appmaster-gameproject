@@ -12,9 +12,9 @@ export function GameItem(props: IGameProp) {
 
   const [isRateMouseEnter, setIsRateMouseEnter] = useState(false)
   const [stars, setStars] = useState(0)
-  const [isFavorite, setIsFavorite] = useState(false)
+  const [, setIsFavorite] = useState(false)
   const [isReloading, setIsReloading] = useState(false)
-  const { currentUser, userData } = useAppContext()
+  const { currentUser } = useAppContext()
 
   const [userLocalData, setUserLocalData] = useState({} as IUserData)
   const navigate = useNavigate()
